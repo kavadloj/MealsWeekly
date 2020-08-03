@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/mycss.css">
+        <title>Meals Weekly</title>
+    </head>
+    <body>
+        <a name="Top"></a>
+        <div id="header-panel">
+            <div class="navigation">
+            <span id=title>Meals Weekly</span>
+            <span id="nav-home"><a class="nav" href="home">Home</a></span>
+            <span id="nav-list"><a class="nav" href="list">Shopping List</a></span>
+            <span id="nav-form"><a class="nav" href="addmeal">Edit Meals</a></span>
+        </div>
+            </div>
+                
+            </div>
+        </div>
+        
+        <div class="flex-container">
+            <div id="titlepanel">
+                <select name="weeks" id="weeks">
+                        <option value="choose">Choose Week</option>
+                        <option value="week1">Week 1</option>
+                </select>    
+                <h1><a name="pagetitle"></a>Monday</h1>
+                <button id="addweek">Add Meal</button>
+            </div>
+            <div id="addmeal">
+                <form id="formSendMeals" name="sendmeals" method="post" action="/sendmeals">
+                    <label for="breakfast">Breakfast:</label><br>
+                    <input type="text" id="breakfast" name="breakfast"><br>
+                    <label for="lunch">Lunch:</label><br>
+                    <input type="text" id="lunch" name="lunch"><br><br>
+                    <label for="dinner">Dinner:</label><br>
+                    <input type="text" id="dinner" name="dinner"><br><br>
+                    <input type="submit" value="Submit">
+                    </form> 
+            </div>
+        </div>
+        <div id="footer-panel">Created by Jonah Kavadlo</div>
+    </body>
+</html>
