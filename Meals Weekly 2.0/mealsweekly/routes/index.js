@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var globalUser = "";
 var globalWeek = "";
+var weeksArray = ["Week 1"];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -71,6 +72,7 @@ router.get('/home', function(req, res) {
   mealcollection.find({"username" : globalUser, "week" : globalWeek},{},function(e,docs){
       res.render('home', {
           title: 'Meals Weekly',
+          "weeksArray" : weeksArray,
           "meallist" : docs
       });
   });
@@ -78,12 +80,12 @@ router.get('/home', function(req, res) {
 
 /* GET List page. */
 router.get('/list', function(req, res) {
-  res.render('list', { title: 'Meals Weekly' });
+  res.render('list', { title: 'Meals Weekly', "weeksArray" : weeksArray});
 });
 
 /* GET Add Meal page. */
 router.get('/addmeal', function(req, res) {
-  res.render('addmeal', { title: 'Meals Weekly' });
+  res.render('addmeal', { title: 'Meals Weekly', "weeksArray" : weeksArray });
 });
 
 /* POST to Add Meal service */
@@ -142,6 +144,7 @@ router.post('/sendaccountdetails', function(req, res) {
   var password = req.body.password;
   globalUser = username;
   globalWeek = "Week 1";
+  weeksArray = ["Week 1"];
 
   var usercollection = db.get('usercollection');
   var mealcollection = db.get('mealcollection');
@@ -238,6 +241,7 @@ router.post('/newweek', function(req, res) {
 
   var newweek = req.body.newweekfield;
   globalWeek = newweek;
+  weeksArray[weeksArray.length] = newweek;
 
   // Set our collection
   var collection = db.get('mealcollection');

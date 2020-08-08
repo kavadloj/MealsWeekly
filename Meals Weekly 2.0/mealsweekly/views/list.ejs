@@ -22,8 +22,14 @@
         <div class="flex-container">
             <div id="titlepanel">
                 <select name="week" id="week">
-                        <option value="choose">Choose Week</option>
-                        <option value="week1">Week 1</option>
+                        <option value="Choose">Choose Week</option>
+                        <%
+                            var list = '';
+                            for (i = 0; i < weeksArray.length; i++) {
+                            list += '<option value= "'+ weeksArray[i] + '"> '+ weeksArray[i] + '</option>';
+                            }
+                        %>
+                        <%- list %>
                 </select>    
                 <h1><a name="pagetitle"></a>Shopping List</h1>
                 <button id="addweek">Add Item</button>

@@ -14,8 +14,8 @@
                 <span id="nav-home"><a class="nav" href="home">Home</a></span>
                 <span id="nav-list"><a class="nav" href="list">Shopping List</a></span>
                 <span id="nav-form"><a class="nav" href="addmeal">Edit Meals</a></span>
+                <span id="logged-in-as"></span>
             </div>
-                
             </div>
         </div>
 
@@ -24,8 +24,13 @@
                 <form id="sendCurrentMeal" name="sendCurrentMeal" method="post" action="/switchweek">
                 <select onchange="this.form.submit()" name="week" id="week">
                     <option value="Choose">Choose Week</option>
-                    <option value="Week 1">Week 1</option>
-                    <option value="Week 2">Week 2</optionn>
+                    <%
+                        var list = '';
+                        for (i = 0; i < weeksArray.length; i++) {
+                        list += '<option value= "'+ weeksArray[i] + '"> '+ weeksArray[i] + '</option>';
+                        }
+                    %>
+                    <%- list %>
                 </select>    
                 </form>
                 <h1><a name="pagetitle"></a>Meals</h1>
@@ -83,4 +88,7 @@ function store(){
   var inputWeek= document.getElementById("newweekfield");
   localStorage.setItem("currentWeek", inputWeek.value);
 }
+
+var msg = "Logged in as " + localStorage.getItem("username");
+        document.getElementById("logged-in-as").innerHTML = msg; 
 </script>

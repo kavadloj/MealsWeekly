@@ -22,8 +22,14 @@
                 <form id="formSendMeals" name="sendmeals" method="post" action="/sendmeals">
                     <div id="titlepanel">
                         <select name="week" id="week">
-                                <option value="Week 1">Week 1</option>
-                                <option value="Week 2">Week 2</option>
+                                <option value="Choose">Choose Week</option>
+                                <%
+                                    var list = '';
+                                    for (i = 0; i < weeksArray.length; i++) {
+                                    list += '<option value= "'+ weeksArray[i] + '"> '+ weeksArray[i] + '</option>';
+                                    }
+                                %>
+                                <%- list %>
                         </select>
                         <select name="day" id="dayselect">
                             <option value="Monday">Monday</option>
