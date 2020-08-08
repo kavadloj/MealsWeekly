@@ -60,6 +60,7 @@ p {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     box-shadow: 5px 5px rgb(100, 100, 100);
+    vertical-align:top;
 }
 
 #monday {
@@ -84,7 +85,7 @@ p {
 #sunday {
     background-color: rgb(228, 201, 250);
 }
-button {
+button, .submitbutton {
     height: 40px;
     background-color: white;
     color: rgb(48, 48, 48);
@@ -93,7 +94,7 @@ button {
     font-size: 14px;
     border: 1px solid #767676;
 }
-button:hover {
+button:hover, .submitbutton:hover {
     cursor: pointer;
     background-color: rgb(187, 187, 187);
 }
@@ -125,7 +126,7 @@ input[type=text]:focus {
     width: 100%;
 }
 
-select {
+#week {
     height: 40px;
     background-color: white;
     color: rgb(48, 48, 48);
@@ -134,12 +135,23 @@ select {
     font-size: 14px;
     margin-right: 20%;
 }
-select:hover {
+#week:hover {
     cursor: pointer;
     background-color: rgb(187, 187, 187);
 }
 #addweek {
     margin-left: 20%;
+}
+#dayselect {
+    font-family: "Marker Felt", fantasy;
+    display: inline-block;
+    font-size: 2em;
+    border-color: lightgray;
+    margin-right: 28%;
+    font-weight: bold;
+}
+#formSendMeals {
+    margin-top: 2%;
 }
 .day {
     margin-top: 5px;
@@ -176,33 +188,17 @@ select:hover {
   
   /* Modal Content */
   .modal-content {
-    position: relative;
     background-color: #fefefe;
     margin: auto;
-    padding: 0;
+    padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-  }
-  
-  /* Add Animation */
-  @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-  }
-  
-  @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
+    opacity: 0.95;
   }
   
   /* The Close Button */
   .close {
-    color: white;
+    color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -215,16 +211,18 @@ select:hover {
     cursor: pointer;
   }
   
-  .modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+  #modalformdiv {
+    display: table;
+    width: 100%;
   }
-  
-  .modal-body {padding: 2px 16px;}
-  
-  .modal-footer {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+  #addWeekForm {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #sendCurrentMeal {
+    display: inline-block;
+    margin-right: 20%;
+
   }

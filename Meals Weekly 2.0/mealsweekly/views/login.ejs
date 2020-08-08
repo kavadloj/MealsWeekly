@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/mycss.css">
+        <title>Meals Weekly</title>
+    </head>
+    <body>
+        <a name="Top"></a>
+        <div id="header-panel">
+            <div class="navigation">
+            <span id=title>Meals Weekly</span>
+        </div>
+            </div>
+                
+            </div>
+        </div>
+        
+        <div class="flex-container">
+            <div id="titlepanel">
+                <h1><a name="pagetitle"></a>Welcome to Meals Weekly</h1><br>
+                <p>Please create an account to proceed</p>
+            </div>
+            <div id="addmeal">
+                <form id="formCreateAccount" name="createaccount" method="post" action="/sendaccountdetails">
+                    <div id="titlepanel">
+                    <label for="username">Username:</label><br>
+                    <input id ="username" type="text" id="username" name="username"><br>
+                    <label for="password">Password:</label><br>
+                    <input type="text" id="password" name="password"><br><br>
+                    <input class="submitbutton" type="submit" value="Submit">
+                    </form> 
+            </div>
+        </div>
+        <div id="footer-panel">Created by Jonah Kavadlo</div>
+    </body>
+</html>
+
+<script  type="text/javascript">
+  function store(){
+     var inputUser= document.getElementById("username");
+     localStorage.setItem("username", inputUser.value);
+    }
+</script>

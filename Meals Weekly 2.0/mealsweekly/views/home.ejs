@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<script src="/public/javascripts/home.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <html>
     <head>
@@ -19,50 +18,69 @@
                 
             </div>
         </div>
-        <button id="myBtn">Open Modal</button>
-
-
 
         <div class="flex-container">
             <div id="titlepanel">
-                <select name="weeks" id="weeks">
-                        <option value="choose">Choose Week</option>
-                        <option value="week1">Week 1</option>
+                <form id="sendCurrentMeal" name="sendCurrentMeal" method="post" action="/switchweek">
+                <select onchange="this.form.submit()" name="week" id="week">
+                    <option value="Choose">Choose Week</option>
+                    <option value="Week 1">Week 1</option>
+                    <option value="Week 2">Week 2</optionn>
                 </select>    
+                </form>
                 <h1><a name="pagetitle"></a>Meals</h1>
                 <button id="addweek">New Week</button>
             </div>
             <div id="colors">
-                <div class="colorbox" id="monday"><div class="day">Monday</div></div>
-                <div class="colorbox" id="tuesday"><div class="day">Tuesday</div></div>
-                <div class="colorbox" id="wednesday"><div class="day">Wednesday</div></div>
-                <div class="colorbox" id="thursday"><div class="day">Thursday</div></div>
+                <div class="colorbox" id="monday"><div class="day">Monday</div>
+                    <div><%- '<br>', meallist[0].breakfast, '<br>', meallist[0].lunch, '<br>', meallist[0].dinner %></div>
+                </div>
+                <div class="colorbox" id="tuesday"><div class="day">Tuesday</div>
+                    <div><%- '<br>', meallist[1].breakfast, '<br>', meallist[1].lunch, '<br>', meallist[1].dinner %></div>
+                </div>
+                <div class="colorbox" id="wednesday"><div class="day">Wednesday</div>
+                    <div><%- '<br>', meallist[2].breakfast, '<br>', meallist[2].lunch, '<br>', meallist[2].dinner %></div>
+                </div>
+                <div class="colorbox" id="thursday"><div class="day">Thursday</div>
+                    <div><%- '<br>', meallist[3].breakfast, '<br>', meallist[3].lunch, '<br>', meallist[3].dinner %></div>
+                </div>
                 <br>
                 <br>
-                <div class="colorbox" id="friday"><div class="day">Friday</div></div>
-                <div class="colorbox" id="saturday"><div class="day">Saturday</div></div>
-                <div class="colorbox" id="sunday"><div class="day">Sunday</div></div>
+                <div class="colorbox" id="friday"><div class="day">Friday</div>
+                    <div><%- '<br>', meallist[4].breakfast, '<br>', meallist[4].lunch, '<br>', meallist[4].dinner %></div>
+                </div>
+                <div class="colorbox" id="saturday"><div class="day">Saturday</div>
+                    <div><%- '<br>', meallist[5].breakfast, '<br>', meallist[5].lunch, '<br>', meallist[5].dinner %></div>
+                </div>
+                <div class="colorbox" id="sunday"><div class="day">Sunday</div>
+                    <div><%- '<br>', meallist[6].breakfast, '<br>', meallist[6].lunch, '<br>', meallist[6].dinner %></div>
+                </div>
             </div>
         </div>
-        <div id="footer-panel">Created by Jonah Kavadlo</div>
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
 
-                <!-- Modal content -->
-                <div class="modal-content">
-                <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <h2>Modal Header</h2>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modalformdiv">
+                    <form id="addWeekForm" name="newweek" method="post" action="/newweek">
+                        <label for="newweekfield">Add a new week:</label><br>
+                        <input type="text" id="newweekfield" name="newweekfield"><br>
+                        <br><br>
+                        <input onclick="store(); window.location.reload();" class="submitbutton" type="submit" value="Submit">
+                    </form> 
                 </div>
-                <div class="modal-body">
-                    <p>Some text in the Modal Body</p>
-                    <p>Some other text...</p>
-                </div>
-                <div class="modal-footer">
-                    <h3>Modal Footer</h3>
-                </div>
-                </div>
-                
             </div>
+              
+        </div>
+        
+
+        <div id="footer-panel">Created by Jonah Kavadlo</div>
     </body>
 </html>
+<script type="text/javascript" src="/javascripts/home.js"></script>
+<script>
+function store(){
+  var inputWeek= document.getElementById("newweekfield");
+  localStorage.setItem("currentWeek", inputWeek.value);
+}
+</script>
