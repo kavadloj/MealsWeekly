@@ -80,7 +80,15 @@ router.get('/home', function(req, res) {
 
 /* GET List page. */
 router.get('/list', function(req, res) {
-  res.render('list', { title: 'Meals Weekly', "weeksArray" : weeksArray});
+  var db = req.db;
+  var collection = db.get('listcollection');
+  collection.find({"username" : globalUser, "week" : globalWeek},{},function(e,docs){
+      res.render('list', {
+          title: "Meals Weeky",
+          "weeksArray" : weeksArray,
+          "shoppinglist" : docs
+      });
+  });
 });
 
 /* GET Add Meal page. */
@@ -323,5 +331,48 @@ router.post('/switchweek', function(req, res) {
   res.redirect("home");
 });
 
+router.post('/switchlistweek', function(req, res) {
+  var setweek = req.body.week;
+  globalWeek = setweek;
+  res.redirect("list");
+});
+
+
+
+/* POST to Add List Item service */
+router.post('/newitem', function(req, res) {
+
+  // Set our internal DB variable
+  var db = req.db;
+
+  // Get our form values. These rely on the "name" attributes
+  var username = globalUser;
+  var week = globalWeek;
+  var item = req.body.itemName;
+  var quantity = req.body.quantity;
+  var tags = req.body.tags;
+
+  // Set our collection
+  var collection = db.get('listcollection');
+
+  // Submit to the DB
+  collection.insert({
+    "username" : username,
+    "week" : week,
+    "item" : item,
+    "quantity" : quantity,
+    "tags" : [tags]
+  }, function (err, doc) {
+    if (err) {
+        // If it failed, return error
+        res.send("There was a problem adding the information to the database.");
+    }
+    else {
+        // And forward to success page
+        res.redirect("list");
+    }
+  });
+
+});
 
 module.exports = router;

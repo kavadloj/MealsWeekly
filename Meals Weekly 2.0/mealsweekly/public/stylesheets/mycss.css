@@ -44,7 +44,7 @@ a.nav:hover {
     flex-wrap: wrap;
     border-top: none;
 }
-#title, h1, h2, h3 {
+#title, h1, h2, h3, h4 {
     font-family: "Marker Felt", fantasy;
     display: inline-block;
 }
@@ -139,7 +139,7 @@ input[type=text]:focus, input[type=password]:focus {
     cursor: pointer;
     background-color: rgb(187, 187, 187);
 }
-#addweek {
+#addweek, #additem {
     margin-left: 20%;
 }
 #dayselect {
@@ -215,7 +215,7 @@ input[type=text]:focus, input[type=password]:focus {
     display: table;
     width: 100%;
   }
-  #addWeekForm {
+  #addWeekForm, #addItemForm {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
@@ -228,4 +228,16 @@ input[type=text]:focus, input[type=password]:focus {
   }
   #logged-in-as {
     margin-left: auto;
+  }
+
+
+  .column {
+    float: left;
+    width: 24%;
+  }
+
+  .listitem:after {
+    content: "";
+    display: table;
+    clear: both;
   }
