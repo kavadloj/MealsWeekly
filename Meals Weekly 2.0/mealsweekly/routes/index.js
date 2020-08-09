@@ -73,6 +73,7 @@ router.get('/home', function(req, res) {
       res.render('home', {
           title: 'Meals Weekly',
           "weeksArray" : weeksArray,
+          "globalWeek" : globalWeek,
           "meallist" : docs
       });
   });
@@ -86,6 +87,7 @@ router.get('/list', function(req, res) {
       res.render('list', {
           title: "Meals Weeky",
           "weeksArray" : weeksArray,
+          "globalWeek" : globalWeek,
           "shoppinglist" : docs
       });
   });
@@ -93,7 +95,10 @@ router.get('/list', function(req, res) {
 
 /* GET Add Meal page. */
 router.get('/addmeal', function(req, res) {
-  res.render('addmeal', { title: 'Meals Weekly', "weeksArray" : weeksArray });
+  res.render('addmeal', { 
+    title: 'Meals Weekly', 
+    "globalWeek" : globalWeek,
+    "weeksArray" : weeksArray });
 });
 
 /* POST to Add Meal service */
@@ -366,6 +371,32 @@ router.post('/newitem', function(req, res) {
     if (err) {
         // If it failed, return error
         res.send("There was a problem adding the information to the database.");
+    }
+    else {
+        // And forward to success page
+        res.redirect("list");
+    }
+  });
+
+});
+
+/* POST to Add List Item service */
+router.post('/deleteitem', function(req, res) {
+
+  // Set our internal DB variable
+  var db = req.db;
+
+  // Get our form values. These rely on the "name" attributes
+  var selectedId = req.body.selectedItem;
+
+  // Set our collection
+  var collection = db.get('listcollection');
+
+  // Submit to the DB
+  collection.remove({_id: selectedId}, function (err, doc) {
+    if (err) {
+        // If it failed, return error
+        res.send("There was a problem deleting the information from the database.");
     }
     else {
         // And forward to success page

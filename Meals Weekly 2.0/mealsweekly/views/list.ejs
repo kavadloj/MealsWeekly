@@ -13,6 +13,7 @@
             <span id="nav-home"><a class="nav" href="home">Home</a></span>
             <span id="nav-form"><a class="nav" href="addmeal">Edit Meals</a></span>
             <span id="nav-list"><a class="nav" href="list">Shopping List</a></span>
+            <span id="logged-in-as"></span>
         </div>
             </div>
                 
@@ -23,11 +24,11 @@
             <div id="titlepanel">
                 <form id="sendCurrentMeal" name="sendCurrentMeal" method="post" action="/switchlistweek">
                     <select onchange="this.form.submit()" name="week" id="week">
-                        <option value="Choose">Choose Week</option>
+                        <option value="Choose" disabled>Choose Week</option>
                         <%
                             var list = '';
                             for (i = 0; i < weeksArray.length; i++) {
-                            list += '<option value= "'+ weeksArray[i] + '"> '+ weeksArray[i] + '</option>';
+                            list += '<option id="' + weeksArray[i] + '" value= "'+ weeksArray[i] + '"> '+ weeksArray[i] + '</option>';
                             }
                         %>
                         <%- list %>
@@ -37,22 +38,24 @@
                 <button id="additem">Add Item</button>
             </div>
 
-            <div id="shoppinglist">
+            <div class="paper" id="shoppinglist">
                 <div class="listitem">
                     <h4 class="column">Mark Complete</h2>
                     <h4 class="column">Item</h2>
                     <h4 class="column">Quantity</h2>
                     <h4 class="column">Tags</h2>
                 </div>
+                <hr>
                 <%  
                     if(shoppinglist.length > 0) {
                         var mylist = '';
                         for (i = 0; i < shoppinglist.length; i++) {
-                        mylist += '<div class="listitem"><input class="column" type="checkbox" id="item' + i + '" name="' + shoppinglist[i].item + '" value="' + shoppinglist[i].item + '"><label class="column" for="item' + i + '">' + shoppinglist[i].item + '</label><label class="column">' + shoppinglist[i].quantity + '</label><label class="column">' + shoppinglist[i].tags[0] + '</label></div>';
+                        mylist += '<div class="listitem"><form id="deleteCurrentItem" name="deleteCurrentItem" method="post" action="/deleteitem"><input class="column" onclick="this.form.submit()" type="checkbox" id="item' + i + '" name="selectedItem" value="' + shoppinglist[i]._id + '"></form><label class="column" for="item' + i + '">' + shoppinglist[i].item + '</label><label class="column">' + shoppinglist[i].quantity + '</label><label class="column">' + shoppinglist[i].tags[0] + '</label></div>';
                         }
                     }
                 %>
                 <%- mylist %>
+                <p id="emptylist"></p>
             </div>
         </div>
 
@@ -81,3 +84,14 @@
 </html>
 
 <script type="text/javascript" src="/javascripts/list.js"></script>
+
+<script>
+    var msg = "Logged in as " + localStorage.getItem("username");
+    document.getElementById("logged-in-as").innerHTML = msg; 
+
+    document.getElementById(<%- JSON.stringify(globalWeek) %>).setAttribute("selected", "");
+
+    if(<%- JSON.stringify(shoppinglist.length) %> < 1) {
+        document.getElementById("emptylist").innerHTML = "You haven't added any items yet!";
+    }
+</script>

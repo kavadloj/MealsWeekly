@@ -53,6 +53,7 @@ p {
     color: rgb(63, 63, 63);
 }
 .colorbox {
+    cursor: pointer;
     height: 230px;
     width: 230px;
     display: inline-block;
@@ -63,26 +64,26 @@ p {
     vertical-align:top;
 }
 
-#monday {
+#Monday {
     background-color: rgb(253, 183, 174);
 }
 
-#tuesday {
+#Tuesday {
     background-color: rgb(250, 204, 164);
 }
-#wednesday {
+#Wednesday {
     background-color: rgb(248, 232, 168);
 }
-#thursday {
+#Thursday {
     background-color: rgb(193, 250, 218);
 }
-#friday {
+#Friday {
     background-color: rgb(205, 234, 248);
 }
-#saturday {
+#Saturday {
     background-color: rgb(197, 197, 252);
 }
-#sunday {
+#Sunday {
     background-color: rgb(228, 201, 250);
 }
 button, .submitbutton {
@@ -161,9 +162,9 @@ input[type=text]:focus, input[type=password]:focus {
 #shoppinglist {
     margin: 0 25% 0 25%;
     border: 1px solid #767676;
-    text-align: left;
+    text-align: center;
     padding: 10px;
-    height: 400px;
+    padding-bottom: 20%;
     background-color: rgb(245, 242, 207);
 }
 .listitem {
@@ -241,3 +242,51 @@ input[type=text]:focus, input[type=password]:focus {
     display: table;
     clear: both;
   }
+
+
+.paper {
+  background: #fff;
+  padding: 30px;
+  position: relative;
+}
+
+.paper,
+.paper::before,
+.paper::after {
+  /* Styles to distinguish sheets from one another */
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+  border: 1px solid #bbb;
+}
+
+.paper::before,
+.paper::after {
+  content: "";
+  position: absolute;
+  height: 95%;
+  width: 99%;
+  background-color: #eee;
+}
+
+.paper::before {
+  right: 15px;
+  top: 0;
+  transform: rotate(-1deg);
+  z-index: -1;
+}
+
+.paper::after {
+  top: 5px;
+  right: -5px;
+  transform: rotate(1deg);
+  z-index: -2;
+}
+
+input[type=checkbox] { 
+}
+h4 {
+    text-align: center;
+}
+
+#emptylist {
+    margin-top: 15%;
+}

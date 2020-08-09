@@ -13,6 +13,7 @@
             <span id="nav-home"><a class="nav" href="home">Home</a></span>
             <span id="nav-form"><a class="nav" href="addmeal">Edit Meals</a></span>
             <span id="nav-list"><a class="nav" href="list">Shopping List</a></span>
+            <span id="logged-in-as"></span>
             </div>
         </div>
             
@@ -22,23 +23,23 @@
                 <form id="formSendMeals" name="sendmeals" method="post" action="/sendmeals">
                     <div id="titlepanel">
                         <select name="week" id="week">
-                                <option value="Choose">Choose Week</option>
+                                <option value="Choose" disabled>Choose Week</option>
                                 <%
                                     var list = '';
                                     for (i = 0; i < weeksArray.length; i++) {
-                                    list += '<option value= "'+ weeksArray[i] + '"> '+ weeksArray[i] + '</option>';
+                                    list += '<option id="' + weeksArray[i] + '" value= "'+ weeksArray[i] + '"> '+ weeksArray[i] + '</option>';
                                     }
                                 %>
                                 <%- list %>
                         </select>
                         <select name="day" id="dayselect">
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
+                            <option id="Monday" value="Monday">Monday</option>
+                            <option id="Tuesday" value="Tuesday">Tuesday</option>
+                            <option id="Wednesday" value="Wednesday">Wednesday</option>
+                            <option id="Thursday" value="Thursday">Thursday</option>
+                            <option id="Friday" value="Friday">Friday</option>
+                            <option id="Saturday" value="Saturday">Saturday</option>
+                            <option id="Sunday" value="Sunday">Sunday</option>
                         </select>    
                     </div>
                     <br>
@@ -55,3 +56,11 @@
         <div id="footer-panel">Created by Jonah Kavadlo</div>
     </body>
 </html>
+
+<script>
+    var msg = "Logged in as " + localStorage.getItem("username");
+    document.getElementById("logged-in-as").innerHTML = msg; 
+
+    document.getElementById(<%- JSON.stringify(globalWeek) %>).setAttribute("selected", "");
+    document.getElementById(localStorage.getItem("currentDay")).setAttribute("selected", "");
+</script>
