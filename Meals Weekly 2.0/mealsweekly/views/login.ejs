@@ -9,13 +9,10 @@
         <a name="Top"></a>
         <div id="header-panel">
             <div class="navigation">
-            <span id=title>Meals Weekly</span>
-        </div>
-            </div>
-                
+                <span id=title>Meals Weekly</span>
             </div>
         </div>
-        
+
         <div class="flex-container">
             <div id="titlepanel">
                 <h1><a name="pagetitle"></a>Welcome to Meals Weekly</h1><br>
@@ -24,12 +21,13 @@
             <div id="addmeal">
                 <form id="formCreateAccount" name="createaccount" method="post" action="/sendaccountdetails">
                     <div id="titlepanel">
-                    <label for="username">Username:</label><br>
-                    <input id ="username" type="text" id="username" name="username"><br>
-                    <label for="password">Password:</label><br>
-                    <input type="password" id="password" name="password"><br><br>
-                    <input onclick="store();" class="submitbutton" type="submit" value="Submit">
-                    </form> 
+                        <label for="username">Username:</label><br>
+                        <input id ="username" type="text" id="username" name="username" maxlength="30"><br>
+                        <label for="password">Password:</label><br>
+                        <input type="password" id="password" name="password" maxlength="30"><br><br>
+                        <input onclick="store();" class="submitbutton" type="submit" value="Submit">
+                    </div>
+                </form> 
             </div>
         </div>
         <div id="footer-panel">Created by Jonah Kavadlo</div>
@@ -37,8 +35,8 @@
 </html>
 
 <script  type="text/javascript">
-  function store(){
-     var inputUser= document.getElementById("username");
-     localStorage.setItem("username", inputUser.value);
+    function store(){
+        var inputUser= document.getElementById("username");
+        localStorage.setItem("username", inputUser.value);
     }
 </script>

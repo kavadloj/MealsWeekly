@@ -9,61 +9,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET Hello World page. */
-router.get('/helloworld', function(req, res) {
-  res.render('helloworld', { title: 'Hello, World!' });
-});
 
-/* GET Userlist page. */
-router.get('/userlist', function(req, res) {
-  var db = req.db;
-  var collection = db.get('usercollection');
-  collection.find({},{},function(e,docs){
-      res.render('userlist', {
-          "userlist" : docs
-      });
-  });
-});
-
-/* GET New User page. */
-router.get('/newuser', function(req, res) {
-  res.render('newuser', { title: 'Add New User' });
-});
-
-/* POST to Add User Service */
-router.post('/adduser', function(req, res) {
-
-  // Set our internal DB variable
-  var db = req.db;
-
-  // Get our form values. These rely on the "name" attributes
-  var userName = req.body.username;
-  var userEmail = req.body.useremail;
-
-  // Set our collection
-  var collection = db.get('usercollection');
-
-  // Submit to the DB
-  collection.insert({
-      "username" : userName,
-      "email" : userEmail
-  }, function (err, doc) {
-      if (err) {
-          // If it failed, return error
-          res.send("There was a problem adding the information to the database.");
-      }
-      else {
-          // And forward to success page
-          res.redirect("userlist");
-      }
-  });
-
-});
-
-
-
-
-
+// HOME ROUTES
 
 /* GET Home page. */
 router.get('/home', function(req, res) {
@@ -79,19 +26,99 @@ router.get('/home', function(req, res) {
   });
 });
 
-/* GET List page. */
-router.get('/list', function(req, res) {
+/* Post new week. */
+router.post('/newweek', function(req, res) {
+
+  // Set our internal DB variable
   var db = req.db;
-  var collection = db.get('listcollection');
-  collection.find({"username" : globalUser, "week" : globalWeek},{},function(e,docs){
-      res.render('list', {
-          title: "Meals Weeky",
-          "weeksArray" : weeksArray,
-          "globalWeek" : globalWeek,
-          "shoppinglist" : docs
-      });
+
+  var newweek = req.body.newweekfield;
+  globalWeek = newweek;
+  weeksArray[weeksArray.length] = newweek;
+
+  // Set our collection
+  var collection = db.get('mealcollection');
+
+  // Submit to the DB
+  collection.insert([
+    {
+      "breakfast" : "",
+      "lunch" : "",
+      "dinner" : "",
+      "day" : "Monday",
+      "week" : newweek,
+      "username" : globalUser
+    },
+    {
+      "breakfast" : "",
+      "lunch" : "",
+      "dinner" : "",
+      "day" : "Tuesday",
+      "week" : newweek,
+      "username" : globalUser
+    },
+    {
+      "breakfast" : "",
+      "lunch" : "",
+      "dinner" : "",
+      "day" : "Wednesday",
+      "week" : newweek,
+      "username" : globalUser
+    },
+    {
+      "breakfast" : "",
+      "lunch" : "",
+      "dinner" : "",
+      "day" : "Thursday",
+      "week" : newweek,
+      "username" : globalUser
+    },
+    {
+      "breakfast" : "",
+      "lunch" : "",
+      "dinner" : "",
+      "day" : "Friday",
+      "week" : newweek,
+      "username" : globalUser
+    },
+    {
+      "breakfast" : "",
+      "lunch" : "",
+      "dinner" : "",
+      "day" : "Saturday",
+      "week" : newweek,
+      "username" : globalUser
+    },
+    {
+      "breakfast" : "",
+      "lunch" : "",
+      "dinner" : "",
+      "day" : "Sunday",
+      "week" : newweek,
+      "username" : globalUser
+    },
+  ], function (err, doc) {
+      if (err) {
+          // If it failed, return error
+          res.send("There was a problem adding the information to the database.");
+      }
+      else {
+          // And forward to success page
+          res.redirect("home");
+      }
   });
+
 });
+
+router.post('/switchweek', function(req, res) {
+  var setweek = req.body.week;
+  globalWeek = setweek;
+  res.redirect("home");
+});
+
+
+
+// ADD MEAL ROUTES
 
 /* GET Add Meal page. */
 router.get('/addmeal', function(req, res) {
@@ -139,7 +166,7 @@ router.post('/sendmeals', function(req, res) {
 
 
 
-
+// LOGIN ROUTES
 
 /* GET Add Login page. */
 router.get('/login', function(req, res) {
@@ -246,94 +273,20 @@ router.post('/sendaccountdetails', function(req, res) {
 });
 
 
+// LIST ROUTES
 
-router.post('/newweek', function(req, res) {
-
-  // Set our internal DB variable
+/* GET List page. */
+router.get('/list', function(req, res) {
   var db = req.db;
-
-  var newweek = req.body.newweekfield;
-  globalWeek = newweek;
-  weeksArray[weeksArray.length] = newweek;
-
-  // Set our collection
-  var collection = db.get('mealcollection');
-
-  // Submit to the DB
-  collection.insert([
-    {
-      "breakfast" : "",
-      "lunch" : "",
-      "dinner" : "",
-      "day" : "Monday",
-      "week" : newweek,
-      "username" : globalUser
-    },
-    {
-      "breakfast" : "",
-      "lunch" : "",
-      "dinner" : "",
-      "day" : "Tuesday",
-      "week" : newweek,
-      "username" : globalUser
-    },
-    {
-      "breakfast" : "",
-      "lunch" : "",
-      "dinner" : "",
-      "day" : "Wednesday",
-      "week" : newweek,
-      "username" : globalUser
-    },
-    {
-      "breakfast" : "",
-      "lunch" : "",
-      "dinner" : "",
-      "day" : "Thursday",
-      "week" : newweek,
-      "username" : globalUser
-    },
-    {
-      "breakfast" : "",
-      "lunch" : "",
-      "dinner" : "",
-      "day" : "Friday",
-      "week" : newweek,
-      "username" : globalUser
-    },
-    {
-      "breakfast" : "",
-      "lunch" : "",
-      "dinner" : "",
-      "day" : "Saturday",
-      "week" : newweek,
-      "username" : globalUser
-    },
-    {
-      "breakfast" : "",
-      "lunch" : "",
-      "dinner" : "",
-      "day" : "Sunday",
-      "week" : newweek,
-      "username" : globalUser
-    },
-  ], function (err, doc) {
-      if (err) {
-          // If it failed, return error
-          res.send("There was a problem adding the information to the database.");
-      }
-      else {
-          // And forward to success page
-          res.redirect("home");
-      }
+  var collection = db.get('listcollection');
+  collection.find({"username" : globalUser, "week" : globalWeek},{},function(e,docs){
+      res.render('list', {
+          title: "Meals Weeky",
+          "weeksArray" : weeksArray,
+          "globalWeek" : globalWeek,
+          "shoppinglist" : docs
+      });
   });
-
-});
-
-router.post('/switchweek', function(req, res) {
-  var setweek = req.body.week;
-  globalWeek = setweek;
-  res.redirect("home");
 });
 
 router.post('/switchlistweek', function(req, res) {
@@ -341,8 +294,6 @@ router.post('/switchlistweek', function(req, res) {
   globalWeek = setweek;
   res.redirect("list");
 });
-
-
 
 /* POST to Add List Item service */
 router.post('/newitem', function(req, res) {

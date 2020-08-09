@@ -66,11 +66,11 @@
                         <form id="addItemForm" name="newitem" method="post" action="/newitem">
                             <h2>Add new list item</h2><br>
                             <label for="itemName">Item name:</label><br>
-                            <input type="text" id="itemName" name="itemName"><br>
+                            <input type="text" id="itemName" name="itemName" required maxlength="20"><br>
                             <label for="quantity">Quantity:</label><br>
-                            <input type="number" id="quantity" name="quantity"><br>
+                            <input type="number" id="quantity" name="quantity" required min="0" max="99"><br>
                             <label for="tags">Meal tags:</label><br>
-                            <input type="text" id="tags" name="tags"><br>
+                            <input type="text" id="tags" name="tags" required maxlength="30"><br>
                             <br><br>
                             <input onclick="store(); window.location.reload();" class="submitbutton" type="submit" value="Submit">
                         </form> 

@@ -38,27 +38,27 @@
             </div>
             <div id="colors">
                 <div class="colorbox" onclick="storeDay(); location.href='addmeal';" id="Monday"><div class="day">Monday</div>
-                    <div><%- '<br>', meallist[0].breakfast, '<br>', meallist[0].lunch, '<br>', meallist[0].dinner %></div>
+                    <div class="mealinfo"><%- '<br>', meallist[0].breakfast, '<br>', meallist[0].lunch, '<br>', meallist[0].dinner %></div>
                 </div>
                 <div class="colorbox" onclick="storeDay(); location.href='addmeal';" id="Tuesday"><div class="day">Tuesday</div>
-                    <div><%- '<br>', meallist[1].breakfast, '<br>', meallist[1].lunch, '<br>', meallist[1].dinner %></div>
+                    <div class="mealinfo"><%- '<br>', meallist[1].breakfast, '<br>', meallist[1].lunch, '<br>', meallist[1].dinner %></div>
                 </div>
                 <div class="colorbox" onclick="storeDay(); location.href='addmeal';" id="Wednesday"><div class="day">Wednesday</div>
-                    <div><%- '<br>', meallist[2].breakfast, '<br>', meallist[2].lunch, '<br>', meallist[2].dinner %></div>
+                    <div class="mealinfo"><%- '<br>', meallist[2].breakfast, '<br>', meallist[2].lunch, '<br>', meallist[2].dinner %></div>
                 </div>
                 <div class="colorbox" onclick="storeDay(); location.href='addmeal';" id="Thursday"><div class="day">Thursday</div>
-                    <div><%- '<br>', meallist[3].breakfast, '<br>', meallist[3].lunch, '<br>', meallist[3].dinner %></div>
+                    <div class="mealinfo"><%- '<br>', meallist[3].breakfast, '<br>', meallist[3].lunch, '<br>', meallist[3].dinner %></div>
                 </div>
                 <br>
                 <br>
                 <div class="colorbox" onclick="storeDay(); location.href='addmeal';" id="Friday"><div class="day">Friday</div>
-                    <div><%- '<br>', meallist[4].breakfast, '<br>', meallist[4].lunch, '<br>', meallist[4].dinner %></div>
+                    <div class="mealinfo"><%- '<br>', meallist[4].breakfast, '<br>', meallist[4].lunch, '<br>', meallist[4].dinner %></div>
                 </div>
                 <div class="colorbox" onclick="storeDay(); location.href='addmeal';" id="Saturday"><div class="day">Saturday</div>
-                    <div><%- '<br>', meallist[5].breakfast, '<br>', meallist[5].lunch, '<br>', meallist[5].dinner %></div>
+                    <div class="mealinfo"><%- '<br>', meallist[5].breakfast, '<br>', meallist[5].lunch, '<br>', meallist[5].dinner %></div>
                 </div>
                 <div class="colorbox" onclick="storeDay(); location.href='addmeal';" id="Sunday"><div class="day">Sunday</div>
-                    <div><%- '<br>', meallist[6].breakfast, '<br>', meallist[6].lunch, '<br>', meallist[6].dinner %></div>
+                    <div class="mealinfo"><%- '<br>', meallist[6].breakfast, '<br>', meallist[6].lunch, '<br>', meallist[6].dinner %></div>
                 </div>
             </div>
         </div>
@@ -69,20 +69,19 @@
                 <div id="modalformdiv">
                     <form id="addWeekForm" name="newweek" method="post" action="/newweek">
                         <label for="newweekfield">Add a new week:</label><br>
-                        <input type="text" id="newweekfield" name="newweekfield"><br>
+                        <input type="text" id="newweekfield" name="newweekfield" maxlength="30"><br>
                         <br><br>
                         <input onclick="store(); window.location.reload();" class="submitbutton" type="submit" value="Submit">
                     </form> 
                 </div>
             </div>
-              
         </div>
         
-
         <div id="footer-panel">Created by Jonah Kavadlo</div>
     </body>
 
 </html>
+
 <script type="text/javascript" src="/javascripts/home.js"></script>
 <script>
     function store(){
