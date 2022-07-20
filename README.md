@@ -1,5 +1,4 @@
-# SWDV-691-Capstone
-Capstone project repo for Jonah Kavadlo
+# Final Project
 
 Meals Weekly is a web application meant to help people with planning their meals. It would save time figuring out what to eat, as well as let users create more balanced eating habits. Dedicating extra energy figuring out what to eat each day is a waste when someone’s already busy with work, family, school, etc., so the app would aim to make it as quick and easy as possible. It also helps with figuring out what to buy at the store, since all meals will be planned out. 
 
